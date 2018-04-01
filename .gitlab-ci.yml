@@ -10,7 +10,7 @@ before_script:
   - |
     mkdir /kcov-build && pushd /kcov-build \
     && cmake /kcov-src && make && make install && popd
-  - which kcov; kcov --version
+  - kcov --version
 
 stages:
   - test
