@@ -13,6 +13,8 @@ job_test:
   stage: test
   coverage: '/^Coverage:\s+([+-]?(?:\d*\.)?\d+%)\s*$/'
   script:
+    - make test
+    - ls tests/cov
     - make covreport
     - shellcheck -s sh sh-ultramunge.sh
     - checkbashisms -fnp sh-ultramunge.sh

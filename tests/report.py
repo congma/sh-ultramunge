@@ -4,7 +4,7 @@ import glob
 import json
 
 
-DBLIST = glob.glob("cov/runall.sh.*/coverage.json")
+DBLIST = glob.glob("cov/runall.sh*/coverage.json")
 if not DBLIST:
     sys.stderr.write("Error: coverage report database not found.\n")
     sys.exit(1)
