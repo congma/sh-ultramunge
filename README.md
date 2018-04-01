@@ -1,3 +1,5 @@
+[![pipeline status](https://gitlab.com/congma/sh-ultramunge/badges/master/pipeline.svg)](https://gitlab.com/congma/sh-ultramunge/commits/master)
+
 `ultramunge`: POSIX shell function to manipulate `PATH`-like variables 
 idempotently.
 
@@ -31,7 +33,7 @@ After sourcing the script, a function `ultramunge` is then available.
 
 The function `ultramunge` manipulates a `PATH`-like variable.
 
-```bash
+```
 ultramunge element variable_name [after]
 ```
 
@@ -92,7 +94,7 @@ You should consider `unset`ting the `ultramunge` function after you are done
 with using it.
 
 
-## Note ##
+## Notes ##
 
 The name "ultramunge" is derived from an internal shell function "`pathmunge`" 
 found on Red Hat, CentOS, or Fedora systems during shell setup.  Compared with 
