@@ -7,7 +7,7 @@ before_script:
                     bash shellcheck devscripts make \
                     cmake cmake-data g++ \
                     binutils-dev libcurl4-openssl-dev zlib1g-dev \
-                    libdw-dev libiberty-dev
+                    libdw-dev libiberty-dev git
   - git clone https://github.com/SimonKagstrom/kcov.git /kcov-build
   - |
     cd /kcov-build && git checkout tags/v33 && mkdir build && cd build && \
