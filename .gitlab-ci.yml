@@ -11,8 +11,8 @@ before_script:
                     libdw-dev libiberty-dev git ca-certificates
   - git clone https://github.com/SimonKagstrom/kcov.git /kcov-src
   - |
-    pushd /kcov-src && mkdir build \
-    cd build && cmake .. && make && make install && popd
+    mkdir /kcov-build && pushd /kcov-build \
+    && cmake /kcov-src && make && make install && popd
 
 stages:
   - test
