@@ -13,6 +13,7 @@ before_script:
   - |
     mkdir /kcov-build && pushd /kcov-build \
     && cmake /kcov-src && make && make install && popd
+  - which kcov
 
 stages:
   - test
@@ -23,6 +24,7 @@ job_test:
   script:
     - make test
     - ls tests/cov
+    - cat tests/cov/runall.sh*/coverage.json
     - make covreport
     - shellcheck -s sh sh-ultramunge.sh
     - checkbashisms -fnp sh-ultramunge.sh
