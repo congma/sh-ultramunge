@@ -71,7 +71,7 @@ used.  In order to mitigate the possible damage that can be done by executing
 arbitrary code in `eval` statements (a vulnerability known as [code 
 injection][codeinj]), the following limitations are imposed:
 
-1.  The name `variable_name` must conform to the POSIX standard for 
+1.  The name `variable_name` must conform to the [POSIX standard][og] for 
     environment variables in shell:
 
     > Environment variable names used by the utilities in the Shell and 
@@ -108,6 +108,7 @@ Bash as well.
 
 
 [codeinj]: https://en.wikipedia.org/wiki/Code_injection "Wikipedia page for code injection"
+[og]: http://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap08.html#tag_08_01 "The Open Group Base Specifications Issue 7, 2018 edition, Sec. 8.1"
 
 
 <!--
