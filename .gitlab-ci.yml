@@ -16,12 +16,12 @@ stages:
   - test
 
 job_test:
+  variables:
+    PS4: "kcov@${BASH_SOURCE}@${LINENO}@"
   stage: test
   coverage: '/^Coverage:\s+([+-]?(?:\d*\.)?\d+%)\s*$/'
   script:
-    - make test
-    - ls tests/cov
-    - cat tests/cov/runall.sh*/coverage.json
+    - echo "${PS4}"
     - make covreport
     - shellcheck -s sh sh-ultramunge.sh
     - checkbashisms -fnp sh-ultramunge.sh
