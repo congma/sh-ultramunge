@@ -1,4 +1,10 @@
 test:
-	$(MAKE) -C tests
+	$(MAKE) -C tests all
 
-.PHONY: test
+covreport:
+	$(MAKE) -C tests covreport
+
+clean:
+	$(MAKE) -C tests clean
+
+.PHONY: test clean covreport

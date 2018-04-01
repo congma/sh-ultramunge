@@ -1,4 +1,5 @@
 [![pipeline status](https://gitlab.com/congma/sh-ultramunge/badges/master/pipeline.svg)](https://gitlab.com/congma/sh-ultramunge/commits/master)
+[![coverage report](https://gitlab.com/congma/sh-ultramunge/badges/master/coverage.svg)](https://gitlab.com/congma/sh-ultramunge/commits/master)
 
 `ultramunge`: POSIX shell function to manipulate `PATH`-like variables 
 idempotently.
