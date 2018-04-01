@@ -1,4 +1,4 @@
-image: ragnaroek/kcov:latest
+image: ragnaroek/kcov:v33
 
 before_script: 
   - |
