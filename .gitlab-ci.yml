@@ -1,0 +1,19 @@
+image: ubuntu:artful
+
+before_script: 
+  - |
+    apt-get update -qq -y --no-install-recommends && \
+    apt-get install -qq -y --no-install-recommends \
+                    bash shellcheck devscripts make
+
+stages:
+  - test
+
+job_test:
+  stage: test
+  script:
+    - make test
+    - shellcheck -s sh sh-ultramunge.sh
+    - checkbashisms -fnp sh-ultramunge.sh
+  tags:
+    - shared
