@@ -1,7 +1,7 @@
 all: cov covreport
 
 cov:
-	kcov --bash-method=PS4 --bash-dont-parse-binary-dir --bash-handle-sh-invocation cov --exclude-pattern='runall.sh' --exclude-pattern='test*.sh' --include-path='../sh-ultramunge.sh' ./runall.sh
+	kcov --bash-method=PS4 --bash-dont-parse-binary-dir --bash-handle-sh-invocation --exclude-pattern='runall.sh' --exclude-pattern='test*.sh' --include-path='../sh-ultramunge.sh' cov ./runall.sh
 
 covreport: cov
 	python report.py
@@ -9,4 +9,4 @@ covreport: cov
 clean:
 	rm -rf cov
 
-.PHONY: all covreport clean
+.PHONY: all clean
