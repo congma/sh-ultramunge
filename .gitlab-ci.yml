@@ -1,10 +1,16 @@
-image: ragnaroek/kcov:v33
+image: fedora:latest
 
 before_script: 
   - |
-    apt-get update -qq -y --no-install-recommends && \
-    apt-get install -qq -y --no-install-recommends \
-                    bash shellcheck devscripts make
+    dnf -y install bash ShellCheck devscripts make \
+                cmake cmake-data gcc-c++ python \
+                elfutils-libelf-devel libcurl-devel binutils-devel \
+                elfutils-devel git ca-certificates
+  - git clone https://github.com/SimonKagstrom/kcov.git /kcov-src
+  - |
+    mkdir /kcov-build && pushd /kcov-build \
+    && cmake /kcov-src && make && make install && popd
+  - kcov --version
 
 stages:
   - test
@@ -13,9 +19,7 @@ job_test:
   stage: test
   coverage: '/^Coverage:\s+([+-]?(?:\d*\.)?\d+%)\s*$/'
   script:
-    - make test
-    - ls tests/cov
-    - make covreport
+    - make PS4='kcov@${BASH_SOURCE}@${LINENO}@' test
     - shellcheck -s sh sh-ultramunge.sh
     - checkbashisms -fnp sh-ultramunge.sh
   tags:
