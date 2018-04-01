@@ -2,7 +2,7 @@ image: fedora:latest
 
 before_script: 
   - |
-    dnf install bash ShellCheck devscripts make \
+    dnf -y install bash ShellCheck devscripts make \
                 cmake cmake-data gcc-c++ python \
                 elfutils-libelf-devel libcurl-devel binutils-devel \
                 elfutils-devel git ca-certificates
