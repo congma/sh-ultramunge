@@ -1,10 +1,17 @@
-image: ragnaroek/kcov:v33
+image: ubuntu:artful
 
 before_script: 
   - |
     apt-get update -qq -y --no-install-recommends && \
     apt-get install -qq -y --no-install-recommends \
-                    bash shellcheck devscripts make
+                    bash shellcheck devscripts make \
+                    cmake cmake-data g++ \
+                    binutils-dev libcurl4-openssl-dev zlib1g-dev \
+                    libdw-dev libiberty-dev
+  - git clone https://github.com/SimonKagstrom/kcov.git /kcov-build
+  - |
+    cd /kcov-build && git checkout tags/v33 && mkdir build && cd build && \
+    cmake .. && make && make install
 
 stages:
   - test
