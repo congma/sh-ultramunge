@@ -1,0 +1,5 @@
+.git
+tests/cov
+**/*~
+**/*.sw[mnop]
+**/.DS_Store
