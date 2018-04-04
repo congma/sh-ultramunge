@@ -1,26 +1,37 @@
-image: fedora:latest
+image: ubuntu:artful
 
-before_script: 
+before_script:
   - |
-    dnf -y install bash ShellCheck devscripts make \
-                cmake cmake-data gcc-c++ python \
-                elfutils-libelf-devel libcurl-devel binutils-devel \
-                elfutils-devel git ca-certificates
-  - git clone https://github.com/SimonKagstrom/kcov.git /kcov-src
-  - |
-    mkdir /kcov-build && pushd /kcov-build \
-    && cmake /kcov-src && make && make install && popd
-  - kcov --version
+    apt-get update -qq -y --no-install-recommends && \
+    apt-get install -qq -y --no-install-recommends \
+                    shellcheck devscripts
 
 stages:
   - test
 
 job_test:
   stage: test
-  coverage: '/^Coverage:\s+([+-]?(?:\d*\.)?\d+%)\s*$/'
-  script:
-    - make PS4='kcov@${BASH_SOURCE}@${LINENO}@' test
-    - shellcheck -s sh sh-ultramunge.sh
-    - checkbashisms -fnp sh-ultramunge.sh
   tags:
     - shared
+  image: docker:latest
+  variables:
+    DOCKER_DRIVER: overlay2
+  services:
+    - docker:dind
+  before_script:
+    - docker info
+  script:
+    - docker build -t sh-ultramunge-test .
+    - docker run --rm sh-ultramunge-test make test
+  after_script:
+    - docker rmi sh-ultramunge-test:latest
+  coverage: '/^Coverage:\s+([+-]?(?:\d*\.)?\d+%)\s*$/'
+
+job_lint:
+  stage: test
+  allow_failure: true
+  tags:
+    - shared
+  script:
+    - shellcheck -s sh sh-ultramunge.sh
+    - checkbashisms -fnpx sh-ultramunge.sh
