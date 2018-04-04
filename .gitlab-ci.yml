@@ -22,7 +22,7 @@ job_test:
     - docker info
   script:
     - docker build -t sh-ultramunge-test .
-    - docker run sh-ultramunge-test make test
+    - docker run --rm sh-ultramunge-test make test
   after_script:
     - docker rmi sh-ultramunge-test:latest
   coverage: '/^Coverage:\s+([+-]?(?:\d*\.)?\d+%)\s*$/'
