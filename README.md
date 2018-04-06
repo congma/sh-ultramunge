@@ -70,10 +70,12 @@ To manipulate the variable referred to by the name `variable_name`, a level of
 indirection is necessary.  Due to the limitation of the POSIX shell, `eval` is 
 used.  In order to mitigate the possible damage that can be done by executing 
 arbitrary code in `eval` statements (a vulnerability known as [code 
-injection][codeinj]), the following limitation is imposed, namely:
-
-*  The name `variable_name` must conform to the [POSIX standard][og] for
-   environment variables in shell:
+injection][codeinj]), the following limitation is imposed, namely, that the 
+name of the identifier (`variable_name`) must "consis[t] solely of letters, 
+numbers, and underscores, and beginning with a letter or underscore."  This 
+restriction makes it compatible with the identifier syntax of 
+[Bash][bashidentifier], which is also a superset of the Open Group [POSIX 
+definition for environment variables][og]:
 
 > Environment variable names used by the utilities in the Shell and 
 > Utilities volume of POSIX.1-2017 consist solely of uppercase letters, 
@@ -106,6 +108,7 @@ Bash as well.
 
 
 [codeinj]: https://en.wikipedia.org/wiki/Code_injection "Wikipedia page for code injection"
+[bashidentifier]: https://www.gnu.org/software/bash/manual/bashref.html#index-name "Bash manual, Definitions, 'name' or 'identifier'"
 [og]: http://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap08.html#tag_08_01 "The Open Group Base Specifications Issue 7, 2018 edition, Sec. 8.1"
 
 

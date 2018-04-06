@@ -13,7 +13,7 @@ ultramunge ()
     _UM_VNAME="$2"
     # Valid name must comform to the POSIX standard for environment variables
     # This also filters out sneaky names.
-    if ! echo "${_UM_VNAME}" | grep -q '^[A-Z_][A-Z0-9_]*$'; then
+    if ! echo "${_UM_VNAME}" | grep -q '^[A-Za-z_][A-Za-z0-9_]*$'; then
 	return 1
     fi
     # Dereference the expanded value of the named variable.
