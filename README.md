@@ -52,15 +52,15 @@ ultramunge /usr/local/bin PATH after
 ```
 
 The resulting `PATH` variable has the value 
-`/sbin:/bin:/usr/bin:/usr/loca/bin`.
+`/sbin:/bin:/usr/bin:/usr/local/bin`.
 
 ---
 
 ```bash
-ultramunge "$HOME/perl5/lib/perl5" PERL5LIB
+ultramunge "${HOME}/perl5/lib/perl5" PERL5LIB
 ```
 
-The expansion result of `"$HOME/perl5/lib/perl5"` is added to the variable 
+The expansion result of `"${HOME}/perl5/lib/perl5"` is added to the variable 
 `PERL5LIB` from the head.
 
 
