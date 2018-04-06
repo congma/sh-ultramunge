@@ -49,7 +49,7 @@ expect_false () {
     hrule
 }
 
-# args: conditional, expectation-kind, test-name, test-script, more-args
+# args: conditional, expectation-kind, test-script, more-args
 # neutralize code execution in conditional; expect non-empty string for true,
 # and empty for false
 with_cond () {
