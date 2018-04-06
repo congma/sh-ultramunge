@@ -33,7 +33,7 @@ ultramunge ()
 	# Test if the variable already contains the value as part.
 	if ! echo "$_UM_VVALUE" | grep -Eq "${_UM_PATTERN}"; then
 	    # Guarantee that neither the head nor the tail variables expands
-	    # to anything containing the single-quote (') character.
+	    # to anything containing the quote (' or ") characters.
 	    if [ "$3" = after ]; then
 		_UM_HEAD="$( printf '%s' "${_UM_VVALUE%:}" | base64 )"
 		_UM_TAIL="$( printf '%s' "${_UM_ITEM}" | base64 )"
