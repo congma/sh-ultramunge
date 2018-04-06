@@ -22,7 +22,6 @@ ultramunge ()
     eval "_UM_VVALUE=\"\${${_UM_VNAME}}\""
     # If the mungee variable is already empty or non-set, just set it to the
     # given item.
-    # shellcheck disable=SC2154
     if [ -z "${_UM_VVALUE}" ]; then
 	_UM_HEAD="$( printf '%s' "${_UM_ITEM}" | base64 )"
 	# shellcheck disable=SC2016
