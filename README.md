@@ -70,22 +70,18 @@ To manipulate the variable referred to by the name `variable_name`, a level of
 indirection is necessary.  Due to the limitation of the POSIX shell, `eval` is 
 used.  In order to mitigate the possible damage that can be done by executing 
 arbitrary code in `eval` statements (a vulnerability known as [code 
-injection][codeinj]), the following limitations are imposed:
+injection][codeinj]), the following limitation is imposed, namely:
 
-1.  The name `variable_name` must conform to the [POSIX standard][og] for 
-    environment variables in shell:
+*  The name `variable_name` must conform to the [POSIX standard][og] for
+   environment variables in shell:
 
-    > Environment variable names used by the utilities in the Shell and 
-    > Utilities volume of POSIX.1-2017 consist solely of uppercase letters, 
-    > digits, and the `<underscore>` ( '`_`' ) from the characters defined in 
-    > Portable Character Set and do not begin with a digit.
+> Environment variable names used by the utilities in the Shell and 
+> Utilities volume of POSIX.1-2017 consist solely of uppercase letters, 
+> digits, and the `<underscore>` ( '`_`' ) from the characters defined in 
+> Portable Character Set and do not begin with a digit.
 
-2.  The single-quote character (`'`) must not be present in either the element 
-    to be added to the variable, or the present value of the variable being 
-    manipulated.
-
-If any of the limitations is not satisfied, the function will return with 
-status `1`, and no variable manipulation is performed.
+If the limitation is not satisfied, the function will return with status `1`, 
+and no variable manipulation is performed.
 
 You *MUST* use the function with caution, and never use it when you cannot 
 control the content of the element or the value of the variable being 
@@ -102,7 +98,8 @@ found on Red Hat, CentOS, or Fedora systems during shell setup.  Compared with
 `pathmunge`, the major difference is that it munges on any `PATH`-like 
 variable.
 
-The function relies on external commands like `grep`, in the Unix fashion.
+The function relies on external commands like `grep`, in the Unix fashion.  In 
+particular, `base64` is used in order to prevent code-injection attack.
 
 It is intended for use in POSIX shell scripts, but should be compatible with 
 Bash as well.
